@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Initialization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <div class="loading-text">Initializing system...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percent">0%</div>
+        </div>
+    </div>
+
+    <!-- Main application container -->
+    <div id="app" style="display: none;">
+        <!-- HUD Menu -->
+        <div id="hud-container">
+            <button id="startBtn">START</button>
+
+            <!-- MAIN MENU -->
+            <div id="mainMenu" class="menu hidden">
+                <div class="option" data-open="profileMenu">PROFILE</div>
+                <div class="option" data-open="questsMenu">QUESTS</div>
+                <div class="option" data-open="settingsMenu">SETTINGS</div>
+            </div>
+
+            <!-- PROFILE MENU -->
+            <div id="profileMenu" class="menu hidden">
+                <div class="sub-option">Name: Unknown</div>
+                <div class="sub-option">Level: ???</div>
+                <div class="sub-option">Class: ???</div>
+                <div class="back-btn" data-back="mainMenu">← BACK</div>
+            </div>
+
+            <!-- QUESTS MENU -->
+            <div id="questsMenu" class="menu hidden">
+                <div class="option" data-open="dailyMenu">Daily Quests</div>
+                <div class="option" data-open="specialMenu">Special Quests</div>
+                <div class="back-btn" data-back="mainMenu">← BACK</div>
+            </div>
+
+            <!-- DAILY QUESTS -->
+            <div id="dailyMenu" class="menu hidden">
+                <div class="sub-option">💧 Drink 2L Water</div>
+                <div class="sub-option">🏋️ Exercise 30 min</div>
+                <div class="sub-option">😴 Sleep 8 hours</div>
+                <div class="back-btn" data-back="questsMenu">← BACK</div>
+            </div>
+
+            <!-- SPECIAL QUESTS -->
+            <div id="specialMenu" class="menu hidden">
+                <div class="sub-option">⚔️ Defeat Dungeon Boss</div>
+                <div class="sub-option">📜 Complete Story Mission</div>
+                <div class="back-btn" data-back="questsMenu">← BACK</div>
+            </div>
+
+            <!-- SETTINGS MENU -->
+            <div id="settingsMenu" class="menu hidden">
+                <div class="sub-option">Audio</div>
+                <div class="sub-option">Graphics</div>
+                <div class="sub-option">Controls</div>
+                <div class="back-btn" data-back="mainMenu">← BACK</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

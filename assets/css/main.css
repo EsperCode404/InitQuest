@@ -1,0 +1,375 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0A0A0F;
+    color: #E0E0E0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.menu:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* App Container */
+#app {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0a0a, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ffc8;
+    z-index: 9999;
+    transition: opacity 1s ease-out;
+}
+
+/* START Button - Matched with Menu Options */
+#startBtn {
+    font-weight: 700; /* Makes the text bold */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 30px;
+    font-size: 1.5rem;
+    color: #00e0ff;
+    border: 2px solid #00e0ff;
+    background: rgba(0, 224, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px #00e0ff; /* Glow effect for text */
+    font-family: 'Orbitron', sans-serif; /* Font family */
+    outline: none;
+}
+
+#startBtn:hover {
+    background: #00e0ff;
+    color: #111;
+    box-shadow: 0 0 30px #00e0ff;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Menu Items */
+.option, .sub-option, .back-btn {
+    width: 280px;
+    padding: 15px 0;
+    border-radius: 10px;
+    border: 2px solid #00e0ff;
+    color: #00e0ff;
+    background: rgba(0, 224, 255, 0.05);
+    font-size: 1.1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.option:hover, .sub-option:hover {
+    background: #00ffff;
+    color: #111;
+    box-shadow: 0 0 30px #00ffff, 0 0 50px #00ffff inset;
+    transform: scale(1.05);
+}
+
+/* Profile Info Specific Styles */
+#profileMenu .sub-option {
+    width: 280px;
+    padding: 15px 0;
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    background: rgba(0,255,255,0.05);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center; /* center like main menu */
+    cursor: pointer; /* changed from default so hover works */
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ffff;
+    box-shadow: 0 0 25px #00ffff;
+    transition: all 0.3s ease;
+}
+
+/* Profile Sub-option Hover */
+#profileMenu .sub-option:hover {
+    background: #00ffff;
+    color: #111;
+    transform: scale(1.15);
+    box-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff inset;
+}
+
+/* SETTINGS Menu Sub-Options */
+#settingsMenu .sub-option { 
+    width: 280px;
+    padding: 15px 0;
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    background: rgba(0,255,255,0.05);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center; /* same as main menu */
+    cursor: pointer; /* clickable */
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ffff;
+    box-shadow: 0 0 25px #00ffff;
+    transition: all 0.3s ease;
+}
+
+/* Settings Sub-option Hover */
+#settingsMenu .sub-option:hover {
+    background: #00ffff;
+    color: #111;
+    transform: scale(1.15);
+    box-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff inset;
+}
+
+.back-btn {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    width: 180px;
+    opacity: 0.8;
+}
+
+.back-btn:hover {
+    opacity: 1;
+    background: rgba(0, 224, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .option, .sub-option {
+        width: 240px;
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+    
+    #startBtn {
+        padding: 15px 40px;
+        font-size: 1.5rem;
+    }
+}
+
+#app {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Loading screen container */
+#loading-screen {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: radial-gradient(circle at center, #0a0a0a, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ffc8;
+  font-family: "Courier New", monospace;
+  z-index: 9999;
+  flex-direction: column;
+  letter-spacing: 1px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+/* Text above bar */
+.loading-text {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  text-shadow: 0 0 5px #00ffc8;
+  text-align: center;
+  width: 100%;
+}
+
+/* Progress bar background */
+.loading-bar {
+  width: 100%;
+  height: 10px;
+  border: 1px solid #00ffc8;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 255, 200, 0.1);
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.2);
+}
+
+/* Actual progress */
+.loading-progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00ffc8, #0088ff);
+  box-shadow: 0 0 10px #00ffc8;
+  transition: width 0.3s ease-out;
+  border-radius: 8px;
+}
+
+/* Percentage text */
+.loading-percent {
+  font-size: 0.9em;
+  opacity: 0.8;
+  text-shadow: 0 0 5px #00ffc8;
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .loading-container {
+    padding: 0 30px;
+  }
+  
+  .loading-text {
+    font-size: 1em;
+  }
+  
+  .loading-bar {
+    height: 8px;
+  }
+  
+  .loading-percent {
+    font-size: 0.8em;
+  }
+}
+
+@keyframes spin {
+    0% { transform: rotate(45deg); }
+    100% { transform: rotate(405deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HUD Container */
+#hud-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* START button - Solo Leveling style */
+#startBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px 60px;
+  font-size: 1.5rem;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  background: rgba(0,255,255,0.05);
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  outline: none;
+}
+
+#startBtn:hover {
+  background: #00ffff;
+  color: #111;
+  box-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff inset;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Options container */
+#options {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center; /* Center options horizontally */
+  justify-content: center; /* Center vertically in flex */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Option panels */
+.option {
+  padding: 15px 60px;
+  border-radius: 12px;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  background: rgba(0,255,255,0.05);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: 0 0 5px #00ffff;
+  box-shadow: 0 0 25px #00ffff;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+}
+
+.option:hover {
+  background: #00ffff;
+  color: #111;
+  transform: scale(1.15);
+  box-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff inset;
+}
