@@ -12,10 +12,10 @@ if (!fs.existsSync(distPath)) {
 let html = fs.readFileSync(distPath, 'utf8');
 
 // 1) Update CSS reference to use root-relative path for Netlify
-html = html.replace(/<link[^>]*href=["']([^"]*\/)?main\.css["'][^>]*>/, '<link rel="stylesheet" href="/styles.css">');
+html = html.replace(/<link[^>]*href=["'][^"]*(main\.css)["'][^>]*>/, '<link rel="stylesheet" href="/styles.css">');
 
-// 2) Remove all external <script src="..."></script> tags (keep inline scripts if any — basic approach)
-html = html.replace(/<script\b[^>]*src=["'][^"']*["'][^>]*>\s*<\/script>/gi, '');
+// 2) Remove any existing bundle.js script
+html = html.replace(/<script[^>]*src=["'][^"]*(bundle\.js)["'][^>]*><\/script>/g, '');
 
 // 3) Ensure bundle.js is injected before </body> with root-relative path
 if (!/src=(["'])\/?bundle\.js\1/.test(html)) {
@@ -24,4 +24,4 @@ if (!/src=(["'])\/?bundle\.js\1/.test(html)) {
 
 // 4) Save back
 fs.writeFileSync(distPath, html, 'utf8');
-console.log('✅ Patched dist/index.html → styles.css + bundle.js');
+console.log('✅ Patched dist/index.html → /styles.css + /bundle.js');
