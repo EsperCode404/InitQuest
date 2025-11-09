@@ -110,21 +110,28 @@ function initApp() {
         
         startBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // Fade out START button
             startBtn.style.opacity = '0';
             startBtn.style.visibility = 'hidden';
             
-            const mainMenu = document.getElementById('mainMenu');
-            if (mainMenu) {
-                mainMenu.style.opacity = '0';
-                mainMenu.style.visibility = 'visible';
-                mainMenu.classList.remove('hidden');
-                
-                // Trigger reflow
-                void mainMenu.offsetWidth;
-                
-                mainMenu.style.opacity = '1';
-                mainMenu.style.transition = 'opacity 0.5s ease-in-out';
-            }
+            // Small delay before showing main menu
+            setTimeout(() => {
+                const mainMenu = document.getElementById('mainMenu');
+                if (mainMenu) {
+                    // Set initial state
+                    mainMenu.style.opacity = '0';
+                    mainMenu.style.visibility = 'visible';
+                    mainMenu.classList.remove('hidden');
+                    
+                    // Trigger reflow to ensure the transition works
+                    void mainMenu.offsetWidth;
+                    
+                    // Apply transition and fade in
+                    mainMenu.style.transition = 'opacity 0.5s ease-in-out';
+                    mainMenu.style.opacity = '1';
+                }
+            }, 150); // Match the transition timing used in other menu navigations
         });
     }
     
