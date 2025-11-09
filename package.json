@@ -1,0 +1,33 @@
+{
+  "name": "base_prototype_interface_03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "clean": "if exist build rmdir /s /q build & if exist dist rmdir /s /q dist",
+  "build:es": "esbuild assets/js/main.js --bundle --minify --outfile=build/bundle.js",
+  "obfuscate": "javascript-obfuscator build/bundle.js --output dist/bundle.js --compact true --control-flow-flattening true --control-flow-flattening-threshold 0.75 --dead-code-injection true --dead-code-injection-threshold 0.4 --string-array true --string-array-encoding base64 --seed 12345",
+  "minify:css": "cleancss -o dist/styles.css assets/css/main.css --compatibility='ie8'",
+  "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-js false --minify-css false index.html -o dist/index.html",
+  "prepare:dist": "npm run clean && if not exist dist mkdir dist && if not exist build mkdir build",
+  "build": "npm run prepare:dist && npm run build:es && npm run obfuscate && npm run minify:css && npm run minify:html && node ./scripts/patch-html.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EsperCode404/InitQuest.git" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EsperCode404/InitQuest/issues"
+  },
+  "homepage": "https://github.com/EsperCode404/InitQuest#readme",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "esbuild": "^0.26.0",
+    "html-minifier-terser": "^7.2.0",
+    "javascript-obfuscator": "^4.1.1",
+    "rimraf": "^6.1.0"
+  }
+}
